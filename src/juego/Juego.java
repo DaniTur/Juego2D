@@ -6,6 +6,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import control.Teclado;
+
 public class Juego extends Canvas implements Runnable {
 
 	// VARIABLES Y CONTANTES
@@ -22,6 +24,8 @@ public class Juego extends Canvas implements Runnable {
 
 	private static Thread thread;
 
+	private static Teclado teclado;
+
 	// volatile, no se puede usar esta variable a la vez en diferentes threads
 	private static volatile boolean enFuncionamiento = false;
 
@@ -29,6 +33,9 @@ public class Juego extends Canvas implements Runnable {
 	private Juego() {
 
 		setPreferredSize(new Dimension(ANCHO, ALTO));
+
+		teclado = new Teclado();
+		addKeyListener(teclado);
 
 		// configuracion de ventana
 		ventana = new JFrame(NOMBRE);
@@ -69,6 +76,20 @@ public class Juego extends Canvas implements Runnable {
 	}
 
 	private void actualizar() {
+		teclado.actualizar();
+
+		if (teclado.arriba) {
+			System.out.println("arriba");
+		}
+		if (teclado.abajo) {
+			System.out.println("abajo");
+		}
+		if (teclado.izquierda) {
+			System.out.println("izquierda");
+		}
+		if (teclado.derecha) {
+			System.out.println("derecha");
+		}
 		aps++; // contador de actualizaciones del programa por segundo
 	}
 
@@ -88,6 +109,8 @@ public class Juego extends Canvas implements Runnable {
 
 		double tiempoTranscurrido;
 		double delta = 0; // delta: cantidad de tiempo que ocurre hasta que hay una actualizacion
+
+		requestFocus();
 
 		while (enFuncionamiento) {
 			final long inicioBucle = System.nanoTime(); // le fijamos unos nanosegundos cuando se ha iniciado el bucle
