@@ -10,6 +10,11 @@ public final class Sprite {
 	public int[] pixeles;
 	private HojaSprites hoja;
 
+	// coleccion de sprites
+	public static Sprite asfalto = new Sprite(32, 0, 0, HojaSprites.desierto);
+
+	// fin de la coleccion
+
 	public Sprite(final int lado, final int columna, final int fila, final HojaSprites hoja) {
 		this.lado = lado;
 
@@ -21,7 +26,7 @@ public final class Sprite {
 
 		for (int y = 0; y < lado; y++) {
 			for (int x = 0; x < lado; x++) {
-				pixeles[(x + y) * lado] = hoja.pixeles[(x + this.x) + (y + this.y) + hoja.obtenAncho()];
+				pixeles[x + y * lado] = hoja.pixeles[(x + this.x) + (y + this.y) + hoja.obtenAncho()];
 			}
 		}
 	}

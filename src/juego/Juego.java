@@ -3,10 +3,15 @@ package juego;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
 import control.Teclado;
+import graficos.Pantalla;
 
 public class Juego extends Canvas implements Runnable {
 
@@ -19,12 +24,19 @@ public class Juego extends Canvas implements Runnable {
 
 	private static final String NOMBRE = "Juego";
 
+	private static Thread thread;
+
 	private static int aps = 0;
 	private static int fps = 0;
 
-	private static Thread thread;
-
 	private static Teclado teclado;
+
+	private static int x = 0;
+	private static int y = 0;
+	private static Pantalla pantalla;
+
+	private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
+	private static int pixeles[] = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
 
 	// volatile, no se puede usar esta variable a la vez en diferentes threads
 	private static volatile boolean enFuncionamiento = false;
@@ -33,6 +45,8 @@ public class Juego extends Canvas implements Runnable {
 	private Juego() {
 
 		setPreferredSize(new Dimension(ANCHO, ALTO));
+
+		pantalla = new Pantalla(ANCHO, ALTO);
 
 		teclado = new Teclado();
 		addKeyListener(teclado);
@@ -79,21 +93,44 @@ public class Juego extends Canvas implements Runnable {
 		teclado.actualizar();
 
 		if (teclado.arriba) {
-			System.out.println("arriba");
+			y++;
 		}
 		if (teclado.abajo) {
-			System.out.println("abajo");
+			y--;
 		}
 		if (teclado.izquierda) {
-			System.out.println("izquierda");
+			x++;
 		}
 		if (teclado.derecha) {
-			System.out.println("derecha");
+			x--;
 		}
 		aps++; // contador de actualizaciones del programa por segundo
 	}
 
 	private void mostrar() {
+		BufferStrategy estrategia = getBufferStrategy(); // 3 buffers: 1 calculando, 2 listo, 3 dibuja imagen
+
+		if (estrategia == null) {
+			createBufferStrategy(3);
+			return;
+		}
+
+		pantalla.limpiar();
+		pantalla.mostrar(x, y);
+
+		System.arraycopy(pantalla.pixeles, 0, pixeles, 0, pixeles.length);
+
+		// for (int i = 0; i < pixeles.length; i++) {
+		// pixeles[i] = pantalla.pixeles[i];
+		// }
+
+		Graphics g = estrategia.getDrawGraphics(); // dibuja lo que esta dentro de la estrategia de buffers
+
+		g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
+		g.dispose(); // destruye el espacio de la memoria que estaba usando g
+
+		estrategia.show(); // para que la imagen se vea en pantalla
+
 		fps++; // contador de fps
 	}
 

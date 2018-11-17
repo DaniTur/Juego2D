@@ -5,8 +5,13 @@ public final class Pantalla {
 	private final int ancho;
 	private final int alto;
 
-	private final int[] pixeles;
+	public final int[] pixeles;
 
+	// temporal
+	private final static int LADO_SPRITE = 32;
+	private final static int MASCARA_SPRITE = LADO_SPRITE - 1;
+
+	// fin temporal
 	public Pantalla(final int ancho, final int alto) {
 
 		this.ancho = ancho;
@@ -15,7 +20,8 @@ public final class Pantalla {
 		pixeles = new int[alto * ancho];
 	}
 
-	// ponemos todos los pixeles de color negro antes de volver a dibujar en pantalla
+	// ponemos todos los pixeles de color negro antes de volver a dibujar en
+	// pantalla
 	public void limpiar() {
 
 		for (int i = 0; i < pixeles.length; i++) {
@@ -40,6 +46,9 @@ public final class Pantalla {
 				}
 
 				// codigo para redibujar
+				// temporal
+				pixeles[posicionX + posicionY * ancho] = Sprite.asfalto.pixeles[(x & MASCARA_SPRITE)
+						+ (y & MASCARA_SPRITE) * LADO_SPRITE];
 
 			}
 		}
