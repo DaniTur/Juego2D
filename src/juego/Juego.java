@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import control.Teclado;
@@ -38,6 +39,8 @@ public class Juego extends Canvas implements Runnable {
 	private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
 	private static int pixeles[] = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
 
+	private static final ImageIcon icono = new ImageIcon(Juego.class.getResource("/icono/icono.png"));
+
 	// volatile, no se puede usar esta variable a la vez en diferentes threads
 	private static volatile boolean enFuncionamiento = false;
 
@@ -55,6 +58,7 @@ public class Juego extends Canvas implements Runnable {
 		ventana = new JFrame(NOMBRE);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setResizable(false);
+		ventana.setIconImage(icono.getImage());
 		ventana.setLayout(new BorderLayout());
 		ventana.add(this, BorderLayout.CENTER);
 		ventana.pack();
