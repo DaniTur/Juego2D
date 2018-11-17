@@ -10,11 +10,15 @@ public class Juego extends Canvas implements Runnable {
 
 	// VARIABLES Y CONTANTES
 	private static final long serialVersionUID = 1L;
+
 	private static JFrame ventana;
 	private static final int ANCHO = 800;
 	private static final int ALTO = 600;
 	private static final String NOMBRE = "Juego";
 	private static Thread thread;
+
+	// volatile, no se puede usar esta variable a la vez en diferentes threads
+	private static volatile boolean enFuncionamiento = false;
 
 	// CONTRUCTOR DE JUEGO
 	private Juego() {
@@ -41,18 +45,29 @@ public class Juego extends Canvas implements Runnable {
 	}
 
 	// THREAD
-	private void iniciarThread() {
+	private synchronized void iniciarThread() { // synchronized se asegura de que los dos metodos no puedan modificar la
+												// variable de manera simultanea
+		enFuncionamiento = true;
+
 		thread = new Thread(this, "Graficos");
 		thread.start();
 	}
 
-	private void detenerThread() {
+	private synchronized void detenerThread() {
+		enFuncionamiento = false;
 
+		try {
+			thread.join(); // cerrar un thread puede dar un problema y lo tenemos que capturar
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void run() {
-		System.out.println("Thread 2 iniciado");
+		while (enFuncionamiento) {
+
+		}
 	}
 
 }
