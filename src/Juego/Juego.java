@@ -6,7 +6,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class Juego extends Canvas {
+public class Juego extends Canvas implements Runnable {
 
 	// VARIABLES Y CONTANTES
 	private static final long serialVersionUID = 1L;
@@ -14,6 +14,7 @@ public class Juego extends Canvas {
 	private static final int ANCHO = 800;
 	private static final int ALTO = 600;
 	private static final String NOMBRE = "Juego";
+	private static Thread thread;
 
 	// CONTRUCTOR DE JUEGO
 	private Juego() {
@@ -22,12 +23,12 @@ public class Juego extends Canvas {
 
 		// configuracion de ventana
 		ventana = new JFrame(NOMBRE);
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // cerrar aplicacion al cerrar ventana
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setResizable(false);
-		ventana.setLayout(new BorderLayout()); // el borde del canvas y el borde de la ventana es el mismo
+		ventana.setLayout(new BorderLayout());
 		ventana.add(this, BorderLayout.CENTER);
-		ventana.pack(); // tamaño de la ventana se ajuste a nuestra configuracion
-		ventana.setLocationRelativeTo(null); // ventana enmedio de la pantalla
+		ventana.pack();
+		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
 
@@ -35,6 +36,23 @@ public class Juego extends Canvas {
 	public static void main(String[] args) {
 
 		Juego juego = new Juego();
+		juego.iniciarThread();
 
 	}
+
+	// THREAD
+	private void iniciarThread() {
+		thread = new Thread(this, "Graficos");
+		thread.start();
+	}
+
+	private void detenerThread() {
+
+	}
+
+	@Override
+	public void run() {
+		System.out.println("Thread 2 iniciado");
+	}
+
 }
