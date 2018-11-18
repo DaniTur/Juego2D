@@ -4,10 +4,10 @@ import graficos.Pantalla;
 
 public abstract class Mapa {
 
-	private int ancho;
-	private int alto;
+	protected int ancho;
+	protected int alto;
 
-	private int[] cuadros;
+	protected int[] cuadros;
 
 	public Mapa(int ancho, int alto) {
 		this.ancho = ancho;
@@ -22,7 +22,7 @@ public abstract class Mapa {
 		cargarMapa(ruta);
 	}
 
-	private void generarMapa() {
+	protected void generarMapa() {
 
 	}
 
@@ -36,5 +36,9 @@ public abstract class Mapa {
 
 	public void mostrar(int compensacionX, int compensacionY, Pantalla pantalla) {
 
+		int o = compensacionX >> 5; // = /32
+		int e = (compensacionX + pantalla.obtenAncho()) >> 5;
+		int n = compensacionY >> 5;
+		int s = (compensacionY + pantalla.obtenAlto()) >> 5;
 	}
 }
