@@ -17,7 +17,7 @@ public final class Pantalla {
 		this.ancho = ancho;
 		this.alto = alto;
 
-		pixeles = new int[alto * ancho];
+		pixeles = new int[ancho * alto];
 	}
 
 	// ponemos todos los pixeles de color negro antes de volver a dibujar en

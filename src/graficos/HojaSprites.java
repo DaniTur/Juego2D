@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 
 public class HojaSprites {
 
-	private final String ruta;
 	private final int ancho;
 	private final int alto;
 	public final int[] pixeles;
@@ -19,7 +18,6 @@ public class HojaSprites {
 
 	public HojaSprites(final String ruta, final int ancho, final int alto) {
 
-		this.ruta = ruta;
 		this.ancho = ancho;
 		this.alto = alto;
 
