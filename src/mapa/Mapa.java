@@ -41,6 +41,12 @@ public abstract class Mapa {
 		int e = (compensacionX + pantalla.obtenAncho()) >> 5;
 		int n = compensacionY >> 5;
 		int s = (compensacionY + pantalla.obtenAlto()) >> 5;
+
+		for (int y = n; y < s; y++) {
+			for (int x = o; x < e; x++) {
+				obtenCuadro(x, y).mostrar(x, y, pantalla);
+			}
+		}
 	}
 
 	public Cuadro obtenCuadro(final int x, final int y) {
@@ -49,7 +55,7 @@ public abstract class Mapa {
 			return Cuadro.ASFALTO;
 		case 1:
 		default:
-			return null;
+			return Cuadro.VACIO;
 		}
 
 	}
