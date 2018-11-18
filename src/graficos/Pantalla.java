@@ -38,7 +38,8 @@ public final class Pantalla {
 			int posicionY = y + compensacionY;
 			for (int x = 0; x < cuadro.sprite.obtenLado(); x++) {
 				int posicionX = x + compensacionX;
-				if (posicionX < -cuadro.sprite.obtenLado() || posicionX > ancho || posicionY < 0 || posicionY > alto) {
+				if (posicionX < -cuadro.sprite.obtenLado() || posicionX >= ancho || posicionY < 0
+						|| posicionY >= alto) {
 					break;
 				}
 				if (posicionX < 0) {

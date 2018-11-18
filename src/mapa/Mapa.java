@@ -39,9 +39,9 @@ public abstract class Mapa {
 
 		pantalla.estableceDiferencia(compensacionX, compensacionY);
 		int o = compensacionX >> 5; // = /32
-		int e = (compensacionX + pantalla.obtenAncho()) >> 5;
+		int e = (compensacionX + pantalla.obtenAncho() + Cuadro.LADO) >> 5;
 		int n = compensacionY >> 5;
-		int s = (compensacionY + pantalla.obtenAlto()) >> 5;
+		int s = (compensacionY + pantalla.obtenAlto() + Cuadro.LADO) >> 5;
 
 		for (int y = n; y < s; y++) {
 			for (int x = o; x < e; x++) {

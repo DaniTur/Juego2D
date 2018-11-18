@@ -30,6 +30,9 @@ public class Juego extends Canvas implements Runnable {
 
 	private static Thread thread;
 
+	private static String CONTADOR_APS = "";
+	private static String CONTADOR_FPS = "";
+
 	private static int aps = 0;
 	private static int fps = 0;
 
@@ -65,6 +68,7 @@ public class Juego extends Canvas implements Runnable {
 		ventana = new JFrame(NOMBRE);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setResizable(false);
+		ventana.setUndecorated(true);
 		ventana.setIconImage(icono.getImage());
 		ventana.setLayout(new BorderLayout());
 		ventana.add(this, BorderLayout.CENTER);
@@ -115,6 +119,9 @@ public class Juego extends Canvas implements Runnable {
 		if (teclado.derecha) {
 			x++;
 		}
+		if (teclado.salir) {
+			System.exit(0);
+		}
 		aps++; // contador de actualizaciones del programa por segundo
 	}
 
@@ -140,6 +147,8 @@ public class Juego extends Canvas implements Runnable {
 		g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.white);
 		g.fillRect(ANCHO / 2, ALTO / 2, 32, 32);
+		g.drawString(CONTADOR_APS, 10, 20);
+		g.drawString(CONTADOR_FPS, 10, 35);
 		g.dispose(); // destruye el espacio de la memoria que estaba usando g
 
 		estrategia.show(); // para que la imagen se vea en pantalla
@@ -180,7 +189,8 @@ public class Juego extends Canvas implements Runnable {
 
 			// contador se actualiza cada segundo y lo mostramos en la ventana
 			if (System.nanoTime() - referenciaContador > NS_POR_SEGUNDO) {
-				ventana.setTitle(NOMBRE + "  APS: " + aps + "  FPS: " + fps);
+				CONTADOR_APS = "APS: " + aps;
+				CONTADOR_FPS = "FPS: " + fps;
 
 				aps = 0; // reiniciamos contadores
 				fps = 0;
