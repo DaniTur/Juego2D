@@ -37,6 +37,7 @@ public abstract class Mapa {
 
 	public void mostrar(final int compensacionX, final int compensacionY, final Pantalla pantalla) {
 
+		pantalla.estableceDiferencia(compensacionX, compensacionY);
 		int o = compensacionX >> 5; // = /32
 		int e = (compensacionX + pantalla.obtenAncho()) >> 5;
 		int n = compensacionY >> 5;
@@ -50,10 +51,12 @@ public abstract class Mapa {
 	}
 
 	public Cuadro obtenCuadro(final int x, final int y) {
+		if (x < 0 || y < 0 || x >= ancho || y >= alto) {
+			return Cuadro.VACIO;
+		}
 		switch (cuadros[x + y * ancho]) {
 		case 0:
 			return Cuadro.ASFALTO;
-		case 1:
 		default:
 			return Cuadro.VACIO;
 		}

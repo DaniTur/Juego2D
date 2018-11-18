@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 
 import control.Teclado;
 import graficos.Pantalla;
+import mapa.Mapa;
+import mapa.MapaGenerado;
 
 public class Juego extends Canvas implements Runnable {
 
@@ -21,8 +23,8 @@ public class Juego extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 
 	private static JFrame ventana;
-	private static final int ANCHO = 1280;
-	private static final int ALTO = 720;
+	private static final int ANCHO = 800;
+	private static final int ALTO = 600;
 
 	private static final String NOMBRE = "Juego";
 
@@ -36,6 +38,8 @@ public class Juego extends Canvas implements Runnable {
 	private static int x = 0;
 	private static int y = 0;
 	private static Pantalla pantalla;
+
+	private static Mapa mapa;
 
 	private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
 	private static int pixeles[] = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
@@ -51,6 +55,8 @@ public class Juego extends Canvas implements Runnable {
 		setPreferredSize(new Dimension(ANCHO, ALTO));
 
 		pantalla = new Pantalla(ANCHO, ALTO);
+
+		mapa = new MapaGenerado(128, 128); // en cuadros o tiles
 
 		teclado = new Teclado();
 		addKeyListener(teclado);
@@ -98,16 +104,16 @@ public class Juego extends Canvas implements Runnable {
 		teclado.actualizar();
 
 		if (teclado.arriba) {
-			y++;
-		}
-		if (teclado.abajo) {
 			y--;
 		}
+		if (teclado.abajo) {
+			y++;
+		}
 		if (teclado.izquierda) {
-			x++;
+			x--;
 		}
 		if (teclado.derecha) {
-			x--;
+			x++;
 		}
 		aps++; // contador de actualizaciones del programa por segundo
 	}
@@ -121,6 +127,7 @@ public class Juego extends Canvas implements Runnable {
 		}
 
 		pantalla.limpiar();
+		mapa.mostrar(x, y, pantalla);
 
 		System.arraycopy(pantalla.pixeles, 0, pixeles, 0, pixeles.length);
 
