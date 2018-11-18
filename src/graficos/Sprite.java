@@ -11,7 +11,7 @@ public final class Sprite {
 	private final HojaSprites hoja;
 
 	// coleccion de sprites
-	public static Sprite asfalto = new Sprite(32, 0, 0, HojaSprites.desierto);
+	public static final Sprite ASFALTO = new Sprite(32, 0, 0, HojaSprites.desierto);
 
 	// fin de la coleccion
 
