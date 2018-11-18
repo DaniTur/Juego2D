@@ -11,6 +11,7 @@ public abstract class Cuadro {
 	public Sprite sprite;
 
 	// coleccion de cuadros
+	public static final Cuadro VACIO = new CuadroVacio(Sprite.VACIO);
 	public static final Cuadro ASFALTO = new CuadroAsfalto(Sprite.ASFALTO);
 
 	// fin de la coleccion de cuadros
@@ -21,7 +22,6 @@ public abstract class Cuadro {
 	}
 
 	public void mostrar(int x, int y, Pantalla pantalla) {
-
 	}
 
 	public boolean solido() {
