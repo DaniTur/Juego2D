@@ -30,4 +30,8 @@ public final class Sprite {
 			}
 		}
 	}
+
+	public int obtenLado() {
+		return lado;
+	}
 }

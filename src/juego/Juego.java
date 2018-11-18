@@ -21,8 +21,8 @@ public class Juego extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 
 	private static JFrame ventana;
-	private static final int ANCHO = 800;
-	private static final int ALTO = 600;
+	private static final int ANCHO = 1280;
+	private static final int ALTO = 720;
 
 	private static final String NOMBRE = "Juego";
 

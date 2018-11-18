@@ -5,10 +5,10 @@ import graficos.Sprite;
 
 public abstract class Cuadro {
 
-	private int x;
-	private int y;
+	public int x;
+	public int y;
 
-	private Sprite sprite;
+	public Sprite sprite;
 
 	// coleccion de cuadros
 	public static final Cuadro ASFALTO = new CuadroAsfalto(Sprite.ASFALTO);
