@@ -9,6 +9,7 @@ public abstract class Mapa {
 	protected int alto;
 
 	protected int[] cuadros;
+	protected Cuadro[] cuadrosCatalogo;
 
 	public Mapa(int ancho, int alto) {
 		this.ancho = ancho;
@@ -21,13 +22,14 @@ public abstract class Mapa {
 	public Mapa(String ruta) {
 
 		cargarMapa(ruta);
+		generarMapa();
 	}
 
 	protected void generarMapa() {
 
 	}
 
-	private void cargarMapa(String ruta) {
+	protected void cargarMapa(String ruta) {
 
 	}
 
@@ -45,7 +47,12 @@ public abstract class Mapa {
 
 		for (int y = n; y < s; y++) {
 			for (int x = o; x < e; x++) {
-				obtenCuadro(x, y).mostrar(x, y, pantalla);
+				// obtenCuadro(x, y).mostrar(x, y, pantalla);
+				if (x < 0 || y < 0 || x >= ancho || y >= alto) {
+					Cuadro.VACIO.mostrar(x, y, pantalla);
+				} else {
+					cuadrosCatalogo[x + y * ancho].mostrar(x, y, pantalla);
+				}
 			}
 		}
 	}
