@@ -134,7 +134,7 @@ public class Juego extends Canvas implements Runnable {
 			return;
 		}
 
-		pantalla.limpiar();
+		// pantalla.limpiar();
 		mapa.mostrar(x, y, pantalla);
 
 		System.arraycopy(pantalla.pixeles, 0, pixeles, 0, pixeles.length);
