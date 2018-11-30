@@ -60,7 +60,7 @@ public class Juego extends Canvas implements Runnable {
 		pantalla = new Pantalla(ANCHO, ALTO);
 
 		// mapa = new MapaGenerado(128, 128); // en cuadros o tiles
-		mapa = new MapaCargado("");
+		mapa = new MapaCargado("/mapas/mapaDesierto.png");
 
 		teclado = new Teclado();
 		addKeyListener(teclado);
