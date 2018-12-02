@@ -67,11 +67,11 @@ public abstract class Mapa {
 		case 1:
 			return Cuadro.ARENA;
 		case 2:
-			return Cuadro.BORDE_CARRETERA;
+			return Cuadro.BORDE_CARRETERA_IZQUIERDO;
 		case 3:
-			return Cuadro.CENTRO_CARRETERA;
+			return Cuadro.CENTRO_CARRETERA_VERTICAL;
 		case 4:
-			return Cuadro.ESQUINA_CARRETERA;
+			return Cuadro.ESQUINA_CARRETERA_INFERIOR_IZQUIERDA;
 		case 5:
 			return Cuadro.PARED_PIEDRA;
 		case 6:
