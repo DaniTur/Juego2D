@@ -66,8 +66,14 @@ public final class Pantalla {
 				if (posicionX < 0) {
 					posicionX = 0;
 				}
-				pixeles[posicionX + posicionY * ancho] = jugador.obtenSprite().pixeles[x
-						+ y * jugador.obtenSprite().obtenLado()];
+				// pixeles[posicionX + posicionY * ancho] = jugador.obtenSprite().pixeles[x
+				// + y * jugador.obtenSprite().obtenLado()];
+
+				int colorPixelJugador = jugador.obtenSprite().pixeles[x + y * jugador.obtenSprite().obtenLado()];
+				// si el color no es el rosa puro de fondo
+				if (colorPixelJugador != 0xffff00ff) {
+					pixeles[posicionX + posicionY * ancho] = colorPixelJugador;
+				}
 			}
 		}
 	}
