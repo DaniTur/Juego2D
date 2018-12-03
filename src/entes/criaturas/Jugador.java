@@ -8,6 +8,8 @@ public class Jugador extends Criatura {
 
 	private Teclado teclado;
 
+	private int animacion;
+
 	public Jugador(Teclado teclado, Sprite sprite) {
 		this.teclado = teclado;
 		this.sprite = sprite;
@@ -26,36 +28,96 @@ public class Jugador extends Criatura {
 		int desplazamientoX = 0;
 		int desplazamientoY = 0;
 
+		int velocidadMovimiento = 1;
+
+		if (animacion < 32767) {
+			animacion++;
+		} else {
+			animacion = 0;
+		}
+
+		if (teclado.correr) {
+			velocidadMovimiento = 2;
+		}
 		if (teclado.arriba) {
-			desplazamientoY--;
+			desplazamientoY -= velocidadMovimiento;
 		}
 		if (teclado.abajo) {
-			desplazamientoY++;
+			desplazamientoY += velocidadMovimiento;
 		}
 		if (teclado.izquierda) {
-			desplazamientoX--;
+			desplazamientoX -= velocidadMovimiento;
 		}
 		if (teclado.derecha) {
-			desplazamientoX++;
+			desplazamientoX += velocidadMovimiento;
 		}
 
 		// si el jugador se mueve entonces lo desplazamos
 		if (desplazamientoX != 0 || desplazamientoY != 0) {
-
-			if (direccion == 'n') {
-				sprite = sprite.ARRIBA0;
-			}
-			if (direccion == 's') {
-				sprite = sprite.ABAJO0;
-			}
-			if (direccion == 'e') {
-				sprite = sprite.DERECHA0;
-			}
-			if (direccion == 'o') {
-				sprite = sprite.IZQUIERDA0;
-			}
-
 			mover(desplazamientoX, desplazamientoY);
+			enMovimiento = true;
+		} else {
+			enMovimiento = false;
+		}
+
+		// ANIMACIONES
+		int resto = animacion % 40;
+
+		if (direccion == 'n') {
+			sprite = sprite.ARRIBA0;
+			if (enMovimiento) {
+				if (resto > 10 && resto <= 20) {
+					sprite = sprite.ARRIBA1;
+				} else if (resto > 20 && resto <= 30) {
+					sprite = sprite.ARRIBA0;
+				} else if (resto > 30) {
+					sprite = sprite.ARRIBA2;
+				} else {
+					sprite = sprite.ARRIBA0;
+				}
+			}
+		}
+		if (direccion == 's') {
+			sprite = sprite.ABAJO0;
+			if (enMovimiento) {
+				if (resto > 10 && resto <= 20) {
+					sprite = sprite.ABAJO1;
+				} else if (resto > 20 && resto <= 30) {
+					sprite = sprite.ABAJO0;
+				} else if (resto > 30) {
+					sprite = sprite.ABAJO2;
+				} else {
+					sprite = sprite.ABAJO0;
+				}
+			}
+		}
+		if (direccion == 'e') {
+			sprite = sprite.DERECHA0;
+			if (enMovimiento) {
+				if (resto > 10 && resto <= 20) {
+					sprite = sprite.DERECHA1;
+				} else if (resto > 20 && resto <= 30) {
+					sprite = sprite.DERECHA0;
+				} else if (resto > 30) {
+					sprite = sprite.DERECHA2;
+				} else {
+					sprite = sprite.DERECHA0;
+				}
+			}
+		}
+		if (direccion == 'o') {
+			sprite = sprite.IZQUIERDA0;
+			if (enMovimiento) {
+				if (resto > 10 && resto <= 20) {
+					sprite = sprite.IZQUIERDA1;
+				} else if (resto > 20 && resto <= 30) {
+					sprite = sprite.IZQUIERDA0;
+				} else if (resto > 30) {
+					sprite = sprite.IZQUIERDA2;
+				} else {
+					sprite = sprite.IZQUIERDA0;
+				}
+			}
 		}
 	}
 
