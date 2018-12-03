@@ -1,19 +1,24 @@
 package entes.criaturas;
 
 import control.Teclado;
+import graficos.Pantalla;
+import graficos.Sprite;
 
 public class Jugador extends Criatura {
 
 	private Teclado teclado;
 
-	public Jugador(Teclado teclado) {
+	public Jugador(Teclado teclado, Sprite sprite) {
 		this.teclado = teclado;
+		this.sprite = sprite;
 	}
 
-	public Jugador(Teclado teclado, int posicionX, int posicionY) { // donde aparece el jugador en el mapa
+	public Jugador(Teclado teclado, Sprite sprite, int posicionX, int posicionY) { // donde aparece el jugador en el
+																					// mapa
 		this.teclado = teclado;
 		this.x = posicionX;
 		this.y = posicionY;
+		this.sprite = sprite;
 	}
 
 	public void actualizar() {
@@ -40,7 +45,8 @@ public class Jugador extends Criatura {
 		}
 	}
 
-	public void mostrar() {
+	public void mostrar(Pantalla pantalla) {
+		pantalla.mostrarJugador(x, y, this);
 	}
 
 }
