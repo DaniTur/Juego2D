@@ -65,6 +65,7 @@ public class Juego extends Canvas implements Runnable {
 
 		// mapa = new MapaGenerado(128, 128); // en cuadros o tiles
 		mapa = new MapaCargado("/mapas/mapaDesierto.png");
+		mapa = new MapaCargado("/mapas/mapaSubterraneo.png");
 		jugador = new Jugador(teclado, Sprite.ARRIBA0, 228, 228);
 
 		// configuracion de ventana
