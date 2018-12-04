@@ -29,15 +29,48 @@ public abstract class Criatura extends Ente {
 			direccion = 'n';
 		}
 
-		if (!estaEliminado()) {
-			modificarPosicionX(desplazamientoX);
-			modificarPosicionY(desplazamientoY);
+		if (!estaEliminado()) { // si no esta eliminada la criatura
+			if (!enColision(desplazamientoX, 0)) {
+				modificarPosicionX(desplazamientoX);
+			}
+			if (!enColision(0, desplazamientoY)) {
+				modificarPosicionY(desplazamientoY);
+			}
 		}
 
 	}
 
-	private boolean enColision() {
-		return false;
+	private boolean enColision(int desplazamientoX, int desplazamientoY) {
+
+		boolean colision = false;
+
+		int posicionX = x + desplazamientoX;
+		int posicionY = y + desplazamientoY;
+
+		int margenIzquierdo = -6; // en pixeles
+		int margenDerecho = 18;
+		int margenSuperior = -4;
+		int margenInferior = 31;
+
+		int bordeIzquierdo = (posicionX + margenDerecho) / sprite.obtenLado();
+		int bordeDerecho = (posicionX + margenDerecho + margenIzquierdo) / sprite.obtenLado();
+		int bordeSuperior = (posicionY + margenInferior) / sprite.obtenLado();
+		int bordeInferior = (posicionY + margenInferior + margenSuperior) / sprite.obtenLado();
+
+		// se prevee el siguiente cuado a pisar y si es solido o no
+		if (mapa.obtenCuadrosCatalogo(bordeIzquierdo + bordeSuperior * mapa.obtenerAncho()).esSolido()) {
+			colision = true;
+		}
+		if (mapa.obtenCuadrosCatalogo(bordeIzquierdo + bordeInferior * mapa.obtenerAncho()).esSolido()) {
+			colision = true;
+		}
+		if (mapa.obtenCuadrosCatalogo(bordeDerecho + bordeSuperior * mapa.obtenerAncho()).esSolido()) {
+			colision = true;
+		}
+		if (mapa.obtenCuadrosCatalogo(bordeDerecho + bordeInferior * mapa.obtenerAncho()).esSolido()) {
+			colision = true;
+		}
+		return colision;
 	}
 
 	public Sprite obtenSprite() {

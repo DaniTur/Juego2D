@@ -10,6 +10,8 @@ public class Cuadro {
 
 	public Sprite sprite;
 
+	private boolean solido;
+
 	public static final int LADO = 32;
 
 	// coleccion de cuadros
@@ -45,7 +47,7 @@ public class Cuadro {
 	// fin de la coleccion de cuadros
 
 	// coleccion SUBTERRANEO
-	public static final Cuadro VACIO = new Cuadro(Sprite.VACIO);
+	public static final Cuadro VACIO = new Cuadro(Sprite.VACIO, true);
 	public static final Cuadro SUELO = new Cuadro(Sprite.SUELO);
 	public static final Cuadro ENTRADA_INFERIOR = new Cuadro(Sprite.ENTRADA_INFERIOR);
 	public static final Cuadro ENTRADA_SUPERIOR = new Cuadro(Sprite.ENTRADA_SUPERIOR);
@@ -62,27 +64,32 @@ public class Cuadro {
 	public static final Cuadro ESQUINA_LARGA_IZQUIERDA = new Cuadro(Sprite.ESQUINA_LARGA_IZQUIERDA);
 	public static final Cuadro ESQUINA_SI = new Cuadro(Sprite.ESQUINA_SI);
 	public static final Cuadro ESQUINA_SD = new Cuadro(Sprite.ESQUINA_SD);
-	public static final Cuadro TIERRA = new Cuadro(Sprite.TIERRA);
-	public static final Cuadro PARED = new Cuadro(Sprite.PARED);
-	public static final Cuadro PARED_EXTINTOR = new Cuadro(Sprite.PARED_EXTINTOR);
-	public static final Cuadro PARED_CARTEL = new Cuadro(Sprite.PARED_CARTEL);
-	public static final Cuadro PARED_IZQUIERDA = new Cuadro(Sprite.PARED_IZQUIERDA);
-	public static final Cuadro PARED_DERECHA = new Cuadro(Sprite.PARED_DERECHA);
-	public static final Cuadro CONTROL_ACCESO = new Cuadro(Sprite.CONTROL_ACCESO);
-	public static final Cuadro PARED_CENTRAL = new Cuadro(Sprite.PARED_CENTRAL);
-	public static final Cuadro PUERTA = new Cuadro(Sprite.PUERTA);
+	public static final Cuadro TIERRA = new Cuadro(Sprite.TIERRA, true);
+	public static final Cuadro PARED = new Cuadro(Sprite.PARED, true);
+	public static final Cuadro PARED_EXTINTOR = new Cuadro(Sprite.PARED_EXTINTOR, true);
+	public static final Cuadro PARED_CARTEL = new Cuadro(Sprite.PARED_CARTEL, true);
+	public static final Cuadro PARED_IZQUIERDA = new Cuadro(Sprite.PARED_IZQUIERDA, true);
+	public static final Cuadro PARED_DERECHA = new Cuadro(Sprite.PARED_DERECHA, true);
+	public static final Cuadro CONTROL_ACCESO = new Cuadro(Sprite.CONTROL_ACCESO, true);
+	public static final Cuadro PARED_CENTRAL = new Cuadro(Sprite.PARED_CENTRAL, true);
+	public static final Cuadro PUERTA = new Cuadro(Sprite.PUERTA, true);
 
 	// fin subteraneo
 	public Cuadro(Sprite sprite) {
 		this.sprite = sprite;
+		solido = false;
+	}
 
+	public Cuadro(Sprite sprite, boolean solido) {
+		this.sprite = sprite;
+		this.solido = solido;
 	}
 
 	public void mostrar(int x, int y, Pantalla pantalla) {
 		pantalla.mostrarCuadro(x << 5, y << 5, this);
 	}
 
-	public boolean solido() {
-		return false;
+	public boolean esSolido() {
+		return solido;
 	}
 }

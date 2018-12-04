@@ -64,9 +64,9 @@ public class Juego extends Canvas implements Runnable {
 		addKeyListener(teclado);
 
 		// mapa = new MapaGenerado(128, 128); // en cuadros o tiles
-		mapa = new MapaCargado("/mapas/mapaDesierto.png");
+		// mapa = new MapaCargado("/mapas/mapaDesierto.png");
 		mapa = new MapaCargado("/mapas/mapaSubterraneo.png");
-		jugador = new Jugador(teclado, Sprite.ARRIBA0, 228, 228);
+		jugador = new Jugador(mapa, teclado, Sprite.ARRIBA0, 225, 225);
 
 		// configuracion de ventana
 		ventana = new JFrame(NOMBRE);
