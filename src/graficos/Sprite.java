@@ -31,15 +31,21 @@ public final class Sprite {
 	// coleccion de sprites del mapa SUBTERRANEO
 	public static final Sprite VACIO = new Sprite(32, 0);
 	public static final Sprite SUELO = new Sprite(32, 0, 0, 0, HojaSprites.subterraneo);
-	public static final Sprite ENTRADA = new Sprite(32, 0, 1, 0, HojaSprites.subterraneo);
-	public static final Sprite ENTRADA_LINEA = new Sprite(32, 1, 1, 0, HojaSprites.subterraneo);
+	public static final Sprite ENTRADA_INFERIOR = new Sprite(32, 0, 1, 0, HojaSprites.subterraneo);
+	public static final Sprite ENTRADA_SUPERIOR = new Sprite(32, 0, 1, 2, HojaSprites.subterraneo);
+	public static final Sprite ENTRADA_LINEA_DERECHA = new Sprite(32, 1, 1, 0, HojaSprites.subterraneo);
+	public static final Sprite ENTRADA_LINEA_IZQUIERDA = new Sprite(32, 1, 1, 1, HojaSprites.subterraneo);
 	public static final Sprite LINEA_DERECHA = new Sprite(32, 1, 0, 0, HojaSprites.subterraneo);
+	public static final Sprite LINEA_IZQUIERDA = new Sprite(32, 1, 0, 1, HojaSprites.subterraneo);
+	public static final Sprite LINEA_SUPERIOR = new Sprite(32, 1, 0, 4, HojaSprites.subterraneo);
 	public static final Sprite ESQUINA_PEQUEÑA_ID = new Sprite(32, 2, 0, 0, HojaSprites.subterraneo);
 	public static final Sprite ESQUINA_PEQUEÑA_II = new Sprite(32, 2, 0, 1, HojaSprites.subterraneo);
 	public static final Sprite ESQUINA_PEQUEÑA_SD = new Sprite(32, 2, 0, 2, HojaSprites.subterraneo);
 	public static final Sprite ESQUINA_PEQUEÑA_SI = new Sprite(32, 2, 0, 3, HojaSprites.subterraneo);
-	public static final Sprite ESQUINA = new Sprite(32, 3, 0, 0, HojaSprites.subterraneo);
-	public static final Sprite ESQUINA_GRANDE = new Sprite(32, 2, 1, 0, HojaSprites.subterraneo);
+	public static final Sprite ESQUINA_LARGA_DERECHA = new Sprite(32, 3, 0, 0, HojaSprites.subterraneo);
+	public static final Sprite ESQUINA_LARGA_IZQUIERDA = new Sprite(32, 3, 0, 1, HojaSprites.subterraneo);
+	public static final Sprite ESQUINA_SI = new Sprite(32, 2, 1, 0, HojaSprites.subterraneo);
+	public static final Sprite ESQUINA_SD = new Sprite(32, 2, 1, 1, HojaSprites.subterraneo);
 	public static final Sprite TIERRA = new Sprite(32, 3, 1, 0, HojaSprites.subterraneo);
 	public static final Sprite PARED = new Sprite(32, 4, 0, 0, HojaSprites.subterraneo);
 	public static final Sprite PARED_EXTINTOR = new Sprite(32, 5, 0, 0, HojaSprites.subterraneo);
